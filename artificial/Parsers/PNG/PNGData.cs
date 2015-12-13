@@ -40,9 +40,11 @@ namespace Artificial.Parsers.PNG
                 data.AddRange(item.Data);
                 data.AddRange(crc);
             }
+            PNGSection IEND = new PNGSection("IEND");
+            data.AddRange(IEND.Raw);
             return data.ToArray();
         }
-
+       
         private List<PNGSection> sections;
     }
 }

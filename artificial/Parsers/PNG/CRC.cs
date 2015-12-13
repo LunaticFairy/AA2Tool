@@ -12,8 +12,7 @@ namespace Artificial.Parsers.PNG
     
         public static uint Crc32Section(string section)
         {
-            byte[] bytes = new byte[section.Length * sizeof(char)];
-            System.Buffer.BlockCopy(section.ToCharArray(), 0, bytes, 0, bytes.Length);
+            byte[] bytes = Encoding.ASCII.GetBytes(section);
             return Crc32(bytes, 0, 4, 0);
         }
 

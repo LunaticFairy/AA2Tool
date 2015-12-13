@@ -12,10 +12,10 @@ namespace Artificial.Parsers.PNG
     {
         public static byte[] HEADER = { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A };
 
-        byte[] contents;
-
-        public PNGParser(string fileName)
+        public static PNGData TryParse(string fileName)
         {
+            byte[] contents;
+
             if (!File.Exists(fileName))
                 throw new FileNotFoundException("File [" + fileName + "] was not found.");
             contents = File.ReadAllBytes(fileName);
@@ -24,11 +24,6 @@ namespace Artificial.Parsers.PNG
                 throw new PNGException("Invalid PNG header");
 
             contents = contents.Skip(8).ToArray();
-        }
-
-        public PNGData TryParse()
-        {
-
             PNGData pngdata = new PNGData();
             int offset = 0;
 
@@ -44,7 +39,7 @@ namespace Artificial.Parsers.PNG
                         break;
 
                     pngdata.AddSection(new PNGSection(name, data));
-                    offset = offset + length + 12;
+                    offset += length + 12;
                 }
                 catch (Exception)
                 {
