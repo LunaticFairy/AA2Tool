@@ -10,19 +10,17 @@ namespace Artificial.Parsers.PNG
     {
         public PNGData()
         {
-            sections = new Dictionary<string, byte[]>();
+            sections = new List<PNGSection>();
         }
 
-        public byte[] GetSection(string name)
+        public List<PNGSection> GetSections()
         {
-            byte[] value;
-            sections.TryGetValue(name, out value);
-            return value;
+            return sections;
         }
 
-        public void SetSection(string name, byte[] value)
+        public void AddSection(PNGSection sect)
         {
-            sections.Add(name, value);
+            sections.Add(sect);
         }
 
         public byte[] SerializeData()
@@ -30,22 +28,21 @@ namespace Artificial.Parsers.PNG
             List<byte> data = new List<Byte>();
             data.AddRange(PNGParser.HEADER);
 
-            foreach(KeyValuePair<string, byte[]> item in sections)
+            foreach(PNGSection item in sections)
             {
-                uint crcSection = CRC.Crc32Section(item.Key);
-                uint crcVal = CRC.Crc32(item.Value, 0, item.Value.Length, crcSection);
-                byte[] crc = BitConverter.GetBytes(crcVal).Reverse().ToArray();
-                byte[] length = BitConverter.GetBytes(item.Value.Length).Reverse().ToArray();
-                byte[] section = Encoding.ASCII.GetBytes(item.Key).Reverse().ToArray();
+
+                byte[] crc = BitConverter.GetBytes(item.CRC32).Reverse().ToArray();
+                byte[] length = BitConverter.GetBytes(item.Data.Length).Reverse().ToArray();
+                byte[] section = Encoding.ASCII.GetBytes(item.Name).ToArray();
 
                 data.AddRange(length);
                 data.AddRange(section);
-                data.AddRange(item.Value);
+                data.AddRange(item.Data);
                 data.AddRange(crc);
             }
             return data.ToArray();
         }
 
-        private Dictionary<string, byte[]> sections;
+        private List<PNGSection> sections;
     }
 }

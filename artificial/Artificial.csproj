@@ -44,11 +44,10 @@
     <Compile Include="Parsers\PNG\PNGData.cs" />
     <Compile Include="Parsers\PNG\PNGException.cs" />
     <Compile Include="Parsers\PNG\PNGParser.cs" />
+    <Compile Include="Parsers\PNG\PNGSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Character\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
