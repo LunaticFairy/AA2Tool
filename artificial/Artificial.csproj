@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Parsers\Character\Character.cs" />
+    <Compile Include="Parsers\Character\CharacterData.cs" />
+    <Compile Include="Parsers\Character\CharacterParser.cs" />
     <Compile Include="Parsers\PNG\CRC.cs" />
     <Compile Include="Parsers\PNG\PNGData.cs" />
     <Compile Include="Parsers\PNG\PNGException.cs" />
