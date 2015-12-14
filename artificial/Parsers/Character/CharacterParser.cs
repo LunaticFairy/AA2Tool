@@ -12,9 +12,9 @@ namespace Artificial.Parsers.Character
     {
         public static Character TryRead(Stream s)
         {
-            PngBitmapDecoder dth = new PngBitmapDecoder(s, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+            PngBitmapDecoder dth = new PngBitmapDecoder(s, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
             CharacterData dat = ReadCharacterData(s);
-            PngBitmapDecoder dpt = new PngBitmapDecoder(s, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+            PngBitmapDecoder dpt = new PngBitmapDecoder(s, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
 
             BitmapSource thumb = dth.Frames[0];
             BitmapSource portrait = dpt.Frames[0];
@@ -29,7 +29,9 @@ namespace Artificial.Parsers.Character
         {
             CharacterData d = new CharacterData();
             // here be dragons and pain
-            
+            byte[] buffer = new byte[3011];
+            s.Read(buffer, 0, 3011); // throw away data.. stub
+
             return d;
         }
     }
