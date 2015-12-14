@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Artificial.Parsers.Character
 {
@@ -18,8 +19,15 @@ namespace Artificial.Parsers.Character
             int dataSize = 0xBC3; // always 0xBC3
 
             int portraitOffset = dataOffset + dataSize;
-            PNGData thumb = PNGParser.TryParse(data.Take(dataOffset).ToArray());
-            PNGData portrait = PNGParser.TryParse(data.Skip(portraitOffset).ToArray());
+
+            byte[] th = data.Take(dataOffset).ToArray();
+            byte[] pt = data.Skip(portraitOffset).ToArray();
+
+            PngBitmapDecoder dth = new PngBitmapDecoder(new MemoryStream(th), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+            PngBitmapDecoder dpt = new PngBitmapDecoder(new MemoryStream(pt), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+
+            BitmapSource thumb = dth.Frames[0];
+            BitmapSource portrait = dpt.Frames[0];           
 
             Character c = new Character(thumb, portrait); // take(dataOffset) gets everything before data
             c.data = ParseData(data.Skip(dataOffset).Take(dataSize).ToArray());

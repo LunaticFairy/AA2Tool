@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,11 +44,6 @@
     <Compile Include="Parsers\Character\Character.cs" />
     <Compile Include="Parsers\Character\CharacterData.cs" />
     <Compile Include="Parsers\Character\CharacterParser.cs" />
-    <Compile Include="Parsers\PNG\CRC.cs" />
-    <Compile Include="Parsers\PNG\PNGData.cs" />
-    <Compile Include="Parsers\PNG\PNGException.cs" />
-    <Compile Include="Parsers\PNG\PNGParser.cs" />
-    <Compile Include="Parsers\PNG\PNGSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

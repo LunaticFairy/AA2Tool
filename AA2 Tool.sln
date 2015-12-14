@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artificial", "artificial\Ar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtificialTest", "ArtificialTest\ArtificialTest.csproj", "{AE3A5902-CE1C-4752-98F3-A5A43544E2CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{74A6292E-2924-4F13-815B-52945F83E4FA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{AE3A5902-CE1C-4752-98F3-A5A43544E2CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE3A5902-CE1C-4752-98F3-A5A43544E2CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE3A5902-CE1C-4752-98F3-A5A43544E2CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{74A6292E-2924-4F13-815B-52945F83E4FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74A6292E-2924-4F13-815B-52945F83E4FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74A6292E-2924-4F13-815B-52945F83E4FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74A6292E-2924-4F13-815B-52945F83E4FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
