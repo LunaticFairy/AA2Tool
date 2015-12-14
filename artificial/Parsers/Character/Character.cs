@@ -7,7 +7,7 @@ using System.Windows.Media.Imaging;
 
 namespace Artificial.Parsers.Character
 {
-    class Character
+    public class Character
     {
         public BitmapSource thumbnail;
         public BitmapSource portrait;

@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Artificial.Parsers.PNG;
+using Artificial.Parsers.Character;
 using System.IO;
 
 namespace ArtificialTest
@@ -12,7 +12,8 @@ namespace ArtificialTest
         public void TestPNG()
         {
             string file = "C:/illusion/AA2Edit/data/save/Female/cirno.png";
-            PNGData data = PNGParser.TryParse(File.ReadAllBytes(file));
+            FileStream s = File.Open(file, FileMode.Open);
+            Character c = CharacterParser.TryRead(s);
             
         }
     }

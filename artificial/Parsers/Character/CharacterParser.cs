@@ -1,5 +1,4 @@
-﻿using Artificial.Parsers.PNG;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,33 +8,24 @@ using System.Windows.Media.Imaging;
 
 namespace Artificial.Parsers.Character
 {
-    class CharacterParser
+    public class CharacterParser
     {
-        public static Character TryParse(byte[] data)
+        public static Character TryRead(Stream s)
         {
-            int fileSize = data.Length;
-            int dataOffset = BitConverter.ToInt32(data, fileSize - 4);
-            dataOffset += fileSize;
-            int dataSize = 0xBC3; // always 0xBC3
-
-            int portraitOffset = dataOffset + dataSize;
-
-            byte[] th = data.Take(dataOffset).ToArray();
-            byte[] pt = data.Skip(portraitOffset).ToArray();
-
-            PngBitmapDecoder dth = new PngBitmapDecoder(new MemoryStream(th), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
-            PngBitmapDecoder dpt = new PngBitmapDecoder(new MemoryStream(pt), BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+            PngBitmapDecoder dth = new PngBitmapDecoder(s, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+            CharacterData dat = ReadCharacterData(s);
+            PngBitmapDecoder dpt = new PngBitmapDecoder(s, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
 
             BitmapSource thumb = dth.Frames[0];
-            BitmapSource portrait = dpt.Frames[0];           
+            BitmapSource portrait = dpt.Frames[0];
 
-            Character c = new Character(thumb, portrait); // take(dataOffset) gets everything before data
-            c.data = ParseData(data.Skip(dataOffset).Take(dataSize).ToArray());
+            Character c = new Character(thumb, portrait);
+            c.data = dat;
 
             return c;
         }
 
-        private static CharacterData ParseData(byte[] data)
+        private static CharacterData ReadCharacterData(Stream s)
         {
             CharacterData d = new CharacterData();
             // here be dragons and pain
