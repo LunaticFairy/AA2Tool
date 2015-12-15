@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Artificial.Parsers.Character;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +29,9 @@ namespace ArtificialGUI
 
         private void Menu_FileOpen_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Open file");
+            FileStream f = File.Open(@"C:\illusion\Artificial Academy 2\AA2Edit\data\save\Female\cirno.png", FileMode.Open);
+            Character c = CharacterParser.TryRead(f);
+            MessageBox.Show("Nothing blew up. Somehow.");
         }
         private void Menu_FileSave_Click(object sender, RoutedEventArgs e)
         {
