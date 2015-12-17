@@ -5,17 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArtificialGUI"
         mc:Ignorable="d"
-        Title="AA2 Tool" Height="350" Width="525">
-    <Grid>
-        <DockPanel>
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File">
-                    <MenuItem Header="_Open" Click="Menu_FileOpen_Click"/>
-                    <MenuItem Header="_Close" Click="Menu_FileClose_Click"/>
-                    <MenuItem Header="_Save" Click="Menu_FileSave_Click"/>
-                </MenuItem>
-            </Menu>
-            <StackPanel></StackPanel>
-        </DockPanel>
-    </Grid>
+        Title="AA2 Tool" Height="400" Width="800">
+    <DockPanel LastChildFill="True">
+        <Menu x:Name="menu" DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open" Click="Menu_FileOpen_Click"/>
+                <MenuItem Header="_Close" Click="Menu_FileClose_Click"/>
+                <MenuItem Header="_Save" Click="Menu_FileSave_Click"/>
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Name="lblCursorPosition" />
+            </StatusBarItem>
+        </StatusBar>
+        <ListBox x:Name="listBox" ItemsSource="{Binding Characters}" Width="150">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Dock=Right" DockPanel.Dock="Right"/>
+        <Button Content="LastChildFill=True"/>
+    </DockPanel>
 </Window>
